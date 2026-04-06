@@ -21,7 +21,7 @@ html {
 body {
   background-color: var(--bg-primary);
   color: var(--text-primary);
-  font-family: 'Bebas Neue', sans-serif;
+  font-family: "Bebas Neue", sans-serif;
   overflow-x: hidden;
 }
 
@@ -47,8 +47,13 @@ body {
 }
 
 @keyframes blink {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0; }
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
 }
 
 .start-star {
@@ -59,14 +64,41 @@ body {
   z-index: 1;
 }
 
-.star-1 { top: 10%; left: 10%; font-size: 2rem; animation-delay: 0s; }
-.star-2 { top: 15%; right: 15%; font-size: 4rem; animation-delay: 0.5s; }
-.star-3 { bottom: 25%; left: 20%; font-size: 1.5rem; animation-delay: 1s; }
-.star-4 { top: 40%; right: 8%; font-size: 2.5rem; animation-delay: 0.3s; }
+.star-1 {
+  top: 10%;
+  left: 10%;
+  font-size: 2rem;
+  animation-delay: 0s;
+}
+.star-2 {
+  top: 15%;
+  right: 15%;
+  font-size: 4rem;
+  animation-delay: 0.5s;
+}
+.star-3 {
+  bottom: 25%;
+  left: 20%;
+  font-size: 1.5rem;
+  animation-delay: 1s;
+}
+.star-4 {
+  top: 40%;
+  right: 8%;
+  font-size: 2.5rem;
+  animation-delay: 0.3s;
+}
 
 @keyframes starPulse {
-  0%, 100% { opacity: 1; transform: scale(1); }
-  50% { opacity: 0.3; transform: scale(0.8); }
+  0%,
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.3;
+    transform: scale(0.8);
+  }
 }
 
 .start-banner {
@@ -91,8 +123,12 @@ body {
 }
 
 @keyframes marquee {
-  0% { transform: translateX(100vw); }
-  100% { transform: translateX(-100%); }
+  0% {
+    transform: translateX(100vw);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
 }
 
 .start-banner-top {
@@ -107,8 +143,12 @@ body {
 }
 
 @keyframes marqueeReverse {
-  0% { transform: translateX(-100%); }
-  100% { transform: translateX(100vw); }
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100vw);
+  }
 }
 
 #hero {
@@ -129,7 +169,8 @@ body {
   z-index: 0;
 }
 
-#hero-text, #menu {
+#hero-text,
+#menu {
   position: relative;
   z-index: 1;
 }
@@ -163,7 +204,7 @@ body {
 }
 
 #menu ul li.active::after {
-  content: '◀';
+  content: "◀";
   margin-left: 20px;
   font-size: 1.5rem;
 }
@@ -289,4 +330,3 @@ body {
   opacity: 0.5;
   z-index: 0;
 }
-
