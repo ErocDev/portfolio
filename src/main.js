@@ -1,6 +1,18 @@
 import gsap from "gsap";
 import { initNavigation } from "./navigation.js";
 import { initAnimations } from "./animations.js";
+import { setIsTransitioning } from "./transitions.js";
+
+let onStartScreen = true;
+
+export function isOnStartScreen() {
+  console.log("start screen: " + onStartScreen);
+  return onStartScreen;
+}
+
+export function SetOnStartScreen(value) {
+  onStartScreen = value;
+}
 
 const startNoise = new Audio("/src/assets/selected.mp3");
 startNoise.volume = 0.2;
@@ -23,6 +35,5 @@ function dismissStart() {
 setTimeout(() => {
   document.addEventListener("keydown", dismissStart);
   document.addEventListener("click", dismissStart);
-}, 250);
-
+}, 500);
 initNavigation();

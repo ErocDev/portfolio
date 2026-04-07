@@ -1,5 +1,10 @@
 import { animateSelected } from "./animations.js";
-import { transitionToAbout, transitionToHero } from "./transitions.js";
+import {
+  transitionToAbout,
+  transitionToHero,
+  getIsTransitioning,
+} from "./transitions.js";
+import { isOnStartScreen } from "./main.js";
 import gsap from "gsap";
 
 const menuItems = document.querySelectorAll("#menu ul li");
@@ -39,7 +44,7 @@ document.addEventListener("keydown", (e) => {
     selectedIndex = Math.min(menuItems.length - 1, selectedIndex + 1);
     updateMenu();
   }
-  if (e.key === "Enter") {
+  if (e.key === "Enter" && !isOnStartScreen()) {
     if (selectedIndex === 0) transitionToAbout();
   }
   if (e.key === "Escape") {

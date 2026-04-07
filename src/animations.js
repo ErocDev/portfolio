@@ -1,5 +1,7 @@
 import gsap from "gsap";
 import { setAnimationsReady } from "./navigation.js";
+import { setIsTransitioning } from "./transitions.js";
+import { SetOnStartScreen } from "./main.js";
 
 export const audio = new Audio("/src/assets/new_days.mp3");
 audio.loop = true;
@@ -19,7 +21,7 @@ export function animateSelected() {
   }
 }
 
-function startFloating() {
+export function startFloating() {
   setAnimationsReady();
   gsap.to("#wave", {
     y: -15,
@@ -91,7 +93,13 @@ export function initAnimations() {
   gsap.set(".geo-1", { rotation: 45 });
   gsap.set(".geo-2", { rotation: 20 });
 
-  const tl = gsap.timeline({ onComplete: startFloating });
+  const tl = gsap.timeline({
+    onComplete: () => {
+      startFloating();
+      setIsTransitioning(false);
+      SetOnStartScreen(false);
+    },
+  });
 
   tl.from(".geo-3", { x: -810, duration: 0.8, ease: "sine.out", delay: 1 })
     .from(
