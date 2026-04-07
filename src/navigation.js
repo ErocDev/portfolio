@@ -3,7 +3,6 @@ import { transitionToAbout, transitionToHero } from "./transitions.js";
 import gsap from "gsap";
 
 const menuItems = document.querySelectorAll("#menu ul li");
-const sections = ["#about", "#projects", "#skills", "#contact"];
 const selectNoise = new Audio("/src/assets/select.mp3");
 selectNoise.volume = 0.2;
 let selectedIndex = 0;

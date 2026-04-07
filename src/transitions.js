@@ -1,5 +1,4 @@
 import gsap from "gsap";
-import { initAnimations } from "./animations.js";
 
 let currentSection = "hero";
 
@@ -12,17 +11,6 @@ const heroElements = [
   "#wave2",
   ".geo-1",
   ".geo-2",
-];
-
-const aboutElements = [
-  "#about-header-bar",
-  "#about-meta",
-  "#about-bio",
-  "#about-list",
-  "#about-links",
-  "#about-divider",
-  "#about-photos",
-  "#about-info-card",
 ];
 
 function hideAbout() {
@@ -48,10 +36,6 @@ function hideHero() {
 }
 
 function showAbout() {
-  console.log(
-    "list items:",
-    document.querySelectorAll("#about-list .list-item").length,
-  );
   const tl = gsap.timeline();
 
   tl.to("#character", {
@@ -109,17 +93,13 @@ export function transitionToAbout() {
   if (currentSection === "about") return;
   currentSection = "about";
 
-  console.log("transition started");
   hideAbout();
 
   hideHero().then(() => {
-    console.log("hero hidden");
     document.querySelector("#hero").style.visibility = "hidden";
     document.querySelector("#about").style.visibility = "visible";
     document.querySelector("#about").style.opacity = "1";
-    console.log("about visible");
     showAbout();
-    console.log("showAbout called");
   });
 }
 

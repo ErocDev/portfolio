@@ -14,10 +14,6 @@
   box-sizing: border-box;
 }
 
-html {
-  scroll-behavior: smooth;
-}
-
 body {
   background-color: var(--bg-primary);
   color: var(--text-primary);
@@ -172,13 +168,6 @@ body {
   z-index: 5;
 }
 
-#hero-bg {
-  position: absolute;
-  inset: 0;
-  background: var(--bg-primary);
-  z-index: 0;
-}
-
 #hero-text,
 #menu {
   position: relative;
@@ -187,15 +176,6 @@ body {
 
 #menu ul {
   list-style: none;
-}
-
-#menu ul li {
-  font-size: 2.5rem;
-  letter-spacing: 0.1em;
-  color: var(--text-secondary);
-  cursor: pointer;
-  transition: color 0.2s ease;
-  margin-bottom: 0.5rem;
 }
 
 #menu ul li:hover {
