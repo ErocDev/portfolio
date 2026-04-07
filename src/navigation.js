@@ -3,6 +3,7 @@ import {
   transitionToAbout,
   transitionToHero,
   getIsTransitioning,
+  getCurrentSection,
 } from "./transitions.js";
 import { isOnStartScreen } from "./main.js";
 import gsap from "gsap";
@@ -10,6 +11,8 @@ import gsap from "gsap";
 const menuItems = document.querySelectorAll("#menu ul li");
 const selectNoise = new Audio("/src/assets/select.mp3");
 selectNoise.volume = 0.2;
+const enterNoise = new Audio("/src/assets/enter.mp3");
+enterNoise.volume = 0.2;
 let selectedIndex = 0;
 let animationsReady = false;
 
@@ -45,7 +48,12 @@ document.addEventListener("keydown", (e) => {
     updateMenu();
   }
   if (e.key === "Enter" && !isOnStartScreen()) {
-    if (selectedIndex === 0) transitionToAbout();
+    if (!getIsTransitioning() || getCurrentSection() == "hero") {
+      if (selectedIndex === 0) {
+        enterNoise.play();
+        transitionToAbout();
+      }
+    }
   }
   if (e.key === "Escape") {
     transitionToHero();

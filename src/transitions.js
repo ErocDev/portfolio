@@ -4,6 +4,9 @@ import { startFloating } from "./animations.js";
 
 let isTransitioning = false;
 
+const menuNoise = new Audio("/src/assets/menu.mp3");
+menuNoise.volume = 0.6;
+
 export function getIsTransitioning() {
   return isTransitioning;
 }
@@ -13,6 +16,10 @@ export function setIsTransitioning(value) {
 }
 
 let currentSection = "hero";
+
+export function getCurrentSection() {
+  return currentSection;
+}
 
 const heroElements = [
   "#menu",
@@ -203,6 +210,7 @@ export function transitionToAbout() {
 
 export function transitionToHero() {
   if (currentSection === "hero" || isTransitioning) return;
+  menuNoise.play();
   isTransitioning = true;
   currentSection = "hero";
 
@@ -267,8 +275,4 @@ export function transitionToHero() {
         .from("#wave2", { y: -800, duration: 1, ease: "power2.out" }, "<");
     },
   });
-}
-
-export function getCurrentSection() {
-  return currentSection;
 }
