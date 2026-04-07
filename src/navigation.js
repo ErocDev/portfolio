@@ -8,11 +8,11 @@ selectNoise.volume = 0.2;
 let selectedIndex = 0;
 let animationsReady = false;
 
-export function setAnimationsReady() {
-  animationsReady = true;
+export function setAnimationsReady(value = true) {
+  animationsReady = value;
 }
 
-function updateMenu() {
+export function updateMenu() {
   menuItems.forEach((item, index) => {
     if (index === selectedIndex) {
       item.style.color = "var(--accent-yellow)";

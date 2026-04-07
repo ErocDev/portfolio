@@ -1,4 +1,5 @@
 import gsap from "gsap";
+import { updateMenu, setAnimationsReady } from "./navigation.js";
 
 let currentSection = "hero";
 
@@ -26,13 +27,32 @@ function hideAbout() {
 }
 
 function hideHero() {
-  return gsap.to(heroElements, {
-    opacity: 0,
-    x: -30,
-    duration: 0.4,
-    stagger: 0.05,
-    ease: "power2.in",
-  });
+  const tl = gsap.timeline();
+  gsap.killTweensOf("#wave");
+  gsap.killTweensOf("#wave2");
+
+  tl.to("#name", { x: 100, opacity: 0, duration: 0.6, ease: "power1.out" })
+    .to("#handle", { opacity: 0, x: 50, duration: 0.4 }, "-=0.3")
+    .to("#tagline", { opacity: 0, y: 10, duration: 0.4 }, "-=0.2")
+    .to(
+      "#menu ul li",
+      { x: -60, opacity: 0, duration: 0.4, stagger: 0.1, ease: "power2.out" },
+      "-=0.3",
+    )
+    .to("#controls", { opacity: 0, duration: 0.4 }, "-=0.1")
+    .to(".geo-1", { y: -300, duration: 0.8, ease: "Sine.out" }, "<")
+    .to(".geo-2", { y: 500, duration: 0.8, ease: "Sine.out" }, "<")
+    .to("#wave", { y: -800, duration: 0.8, ease: "power2.out" }, "<")
+    .to("#wave2", { y: -800, duration: 1, ease: "power2.out" }, "<")
+    .to(".geo-3", { x: -810, duration: 0.8, ease: "Sine.in" }, "<");
+
+  // tl.to("#menu", { x: -400, duration: 0.4, ease: "sine.inOut" })
+  //   .to("#hero-text", { x: +500, duration: 0.4, ease: "sine.inOut" }, "<")
+  //   .to("#wave", { y: -200, duration: 0.4, ease: "sine.inOut" })
+  //   .to("#wave2", { y: -200, duration: 0.4, ease: "sine.inOut" }, "<")
+  //   .to(".geo-1", { y: -100, duration: 0.5, ease: "sine.inOut" })
+  //   .to(".geo-2", { y: +300, duration: 0.5, ease: "sine.inOut" }, "<");
+  return tl;
 }
 
 function showAbout() {
@@ -113,19 +133,42 @@ export function transitionToHero() {
     onComplete: () => {
       document.querySelector("#about").style.visibility = "hidden";
       document.querySelector("#hero").style.visibility = "visible";
-      gsap.to(heroElements, {
-        opacity: 1,
-        x: 0,
-        duration: 0.4,
-        stagger: 0.05,
+      gsap.set(heroElements, { clearProps: "all" });
+      gsap.set("#menu ul li", { clearProps: "all" });
+      gsap.set("#name, #handle, #tagline", { clearProps: "all" });
+      setAnimationsReady(false);
+      updateMenu();
+
+      const tl = gsap.timeline({ onComplete: setAnimationsReady(true) });
+
+      tl.from("#name", {
+        x: 100,
+        opacity: 0,
+        duration: 0.6,
         ease: "power2.out",
-      });
-      gsap.to("#character", {
-        left: "50%",
-        opacity: 0.15,
-        duration: 0.8,
-        ease: "power2.inOut",
-      });
+      })
+        .from("#handle", { opacity: 0, x: 50, duration: 0.4 }, "-=0.3")
+        .from("#tagline", { opacity: 0, y: 10, duration: 0.4 }, "-=0.2")
+        .from(
+          "#menu ul li",
+          {
+            x: -60,
+            opacity: 0,
+            duration: 0.4,
+            stagger: 0.1,
+            ease: "power2.out",
+          },
+          "-=0.3",
+        )
+        .from("#controls", { opacity: 0, duration: 0.4 }, "-=0.1")
+        .from("#wave", { y: -800, duration: 0.8, ease: "power2.out" }, "<")
+        .from("#wave2", { y: -800, duration: 1, ease: "power2.out" }, "<")
+        .from(".geo-3", {
+          x: -810,
+          duration: 0.8,
+          ease: "power3.out",
+          delay: 0.3,
+        });
     },
   });
 }
