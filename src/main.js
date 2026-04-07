@@ -6,6 +6,9 @@ const startNoise = new Audio("/src/assets/selected.mp3");
 startNoise.volume = 0.2;
 const startScreen = document.querySelector("#start-screen");
 
+history.scrollRestoration = "manual";
+window.scrollTo(0, 0);
+
 function dismissStart() {
   startNoise.play();
   document.removeEventListener("keydown", dismissStart);

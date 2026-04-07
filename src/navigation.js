@@ -1,4 +1,5 @@
 import { animateSelected } from "./animations.js";
+import { transitionToAbout, transitionToHero } from "./transitions.js";
 import gsap from "gsap";
 
 const menuItems = document.querySelectorAll("#menu ul li");
@@ -40,8 +41,10 @@ document.addEventListener("keydown", (e) => {
     updateMenu();
   }
   if (e.key === "Enter") {
-    const target = document.querySelector(sections[selectedIndex]);
-    target.scrollIntoView({ behavior: "smooth" });
+    if (selectedIndex === 0) transitionToAbout();
+  }
+  if (e.key === "Escape") {
+    transitionToHero();
   }
 });
 

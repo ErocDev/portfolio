@@ -93,7 +93,7 @@ export function initAnimations() {
 
   const tl = gsap.timeline({ onComplete: startFloating });
 
-  tl.from(".geo-3", { x: -800, duration: 0.8, ease: "power3.out" })
+  tl.from(".geo-3", { x: -810, duration: 0.8, ease: "power3.out", delay: 1 })
     .from(
       "#name",
       { x: 100, opacity: 0, duration: 0.6, ease: "power3.out" },
