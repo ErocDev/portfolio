@@ -50,6 +50,7 @@ function hideAbout() {
   gsap.set("#about-divider", { opacity: 0 });
   gsap.set(".photo-box", { opacity: 0 });
   gsap.set("#about-info-card", { opacity: 0, y: 30 });
+  gsap.set("#about-controls", { opacity: 0, y: 10 });
 }
 
 function hideHero() {
@@ -126,6 +127,11 @@ function showAbout() {
     )
     .to(
       "#about-info-card",
+      { opacity: 1, y: 0, duration: 0.5, ease: "power3.out" },
+      "-=0.2",
+    )
+    .to(
+      "#about-controls",
       { opacity: 1, y: 0, duration: 0.5, ease: "power3.out" },
       "-=0.2",
     )
