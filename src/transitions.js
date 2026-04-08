@@ -1,6 +1,6 @@
 import gsap from "gsap";
 import { updateMenu, setAnimationsReady } from "./navigation.js";
-import { startFloating } from "./animations.js";
+import { startFloating, startWaveMorph } from "./animations.js";
 
 let isTransitioning = false;
 
@@ -33,6 +33,14 @@ const heroElements = [
 ];
 
 function hideAbout() {
+  gsap.killTweensOf(".box-1");
+  gsap.killTweensOf(".box-2");
+  gsap.killTweensOf(".box-3");
+  gsap.killTweensOf(".box-4");
+  gsap.killTweensOf("#about-info-card");
+  gsap.killTweensOf("#about-header");
+  gsap.killTweensOf("#about-content");
+  gsap.killTweensOf("#about-divider");
   gsap.set("#about-header-bar", { opacity: 0, x: -50 });
   gsap.set("#about-meta", { opacity: 0, x: -50 });
   gsap.set("#about-bio", { opacity: 0, x: -50 });
@@ -48,7 +56,10 @@ function hideHero() {
   const tl = gsap.timeline();
   gsap.killTweensOf("#wave");
   gsap.killTweensOf("#wave2");
+  gsap.killTweensOf("#wave-path");
+  gsap.killTweensOf("#wave-path2");
   gsap.killTweensOf("#character");
+  gsap.killTweensOf("ul li");
 
   tl.to("#name", { x: 100, opacity: 0, duration: 0.6, ease: "power1.out" })
     .to("#handle", { opacity: 0, x: 50, duration: 0.4 }, "-=0.3")
@@ -226,6 +237,7 @@ export function transitionToHero() {
       gsap.set(heroElements, { clearProps: "all" });
       gsap.set("#menu ul li", { clearProps: "all" });
       gsap.set("#name, #handle, #tagline", { clearProps: "all" });
+      gsap.set("#character", { clearProps: "all" });
       gsap.set("#character", {
         left: "50%",
         x: 0,
@@ -233,14 +245,40 @@ export function transitionToHero() {
         opacity: 0.15,
         rotation: 0,
       });
+      gsap.set("#wave", { y: 0, opacity: 1 });
+      gsap.set("#wave2", { y: 0, opacity: 0.5 });
+      gsap.set("#wave-path", {
+        attr: {
+          d: "M600,0 C800,150 1000,50 1200,120 C1320,160 1400,80 1440,130 L1440,0 Z",
+        },
+      });
+      gsap.set("#wave-path2", {
+        attr: {
+          d: "M500,0 C700,200 900,80 1100,160 C1280,220 1380,100 1440,150 L1440,0 Z",
+        },
+      });
       setAnimationsReady(false);
       updateMenu();
 
       const tl = gsap.timeline({
         onComplete: () => {
+          gsap.killTweensOf("#character");
+          gsap.killTweensOf("#wave");
+          gsap.killTweensOf("#wave2");
+          gsap.set("#character", {
+            x: 0,
+            y: 0,
+            left: "50%",
+            opacity: 0.15,
+            rotation: 0,
+          });
+          gsap.set("#wave", { y: 0, opacity: 1 });
+          gsap.set("#wave2", { y: 0, opacity: 0.5 });
           setAnimationsReady(true);
           startFloating();
+          startWaveMorph();
           isTransitioning = false;
+          updateMenu();
         },
       });
 

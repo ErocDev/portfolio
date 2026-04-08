@@ -66,7 +66,7 @@ export function startFloating() {
   animateSelected();
 }
 
-function startWaveMorph() {
+export function startWaveMorph() {
   gsap.to("#wave-path", {
     attr: {
       d: "M600,0 C800,80 1000,160 1200,80 C1320,40 1400,140 1440,100 L1440,0 Z",
