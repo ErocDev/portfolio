@@ -1,10 +1,11 @@
 import gsap from "gsap";
 import { updateMenu, setAnimationsReady } from "./navigation.js";
 import { startFloating, startWaveMorph } from "./animations.js";
+import menuSrc from "./assets/menu.mp3";
 
 let isTransitioning = false;
 
-const menuNoise = new Audio("/src/assets/menu.mp3");
+const menuNoise = new Audio(menuSrc);
 menuNoise.volume = 0.6;
 
 export function getIsTransitioning() {

@@ -2,6 +2,7 @@ import gsap from "gsap";
 import { initNavigation } from "./navigation.js";
 import { initAnimations } from "./animations.js";
 import { setIsTransitioning } from "./transitions.js";
+import selectedSrc from "./assets/selected.mp3";
 
 let onStartScreen = true;
 
@@ -14,7 +15,7 @@ export function SetOnStartScreen(value) {
   onStartScreen = value;
 }
 
-const startNoise = new Audio("/src/assets/selected.mp3");
+const startNoise = new Audio(selectedSrc);
 startNoise.volume = 0.2;
 const startScreen = document.querySelector("#start-screen");
 

@@ -7,6 +7,7 @@ import {
 } from "./transitions.js";
 import { isOnStartScreen } from "./main.js";
 import gsap from "gsap";
+import menuSrc from "./assets/menu.mp3";
 
 const menuItems = document.querySelectorAll("#menu ul li");
 const selectNoise = new Audio("/src/assets/select.mp3");

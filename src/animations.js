@@ -2,8 +2,9 @@ import gsap from "gsap";
 import { setAnimationsReady } from "./navigation.js";
 import { setIsTransitioning } from "./transitions.js";
 import { SetOnStartScreen } from "./main.js";
+import audioSrc from "./assets/new_days.mp3";
 
-export const audio = new Audio("/src/assets/new_days.mp3");
+export const audio = new Audio(audioSrc);
 audio.loop = true;
 audio.volume = 0.2;
 
