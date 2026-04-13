@@ -55,7 +55,6 @@ export function startFloating() {
     repeat: -1,
     transformOrigin: "center center",
   });
-
   gsap.to(".geo-2", {
     rotation: -360,
     duration: 30,
@@ -63,7 +62,6 @@ export function startFloating() {
     repeat: -1,
     transformOrigin: "center center",
   });
-
   animateSelected();
 }
 
@@ -102,7 +100,12 @@ export function initAnimations() {
     },
   });
 
-  tl.from(".geo-3", { x: -810, duration: 0.8, ease: "sine.out", delay: 1 })
+  tl.from(".geo-3", {
+    x: () => -window.innerWidth * 0.6,
+    duration: 0.8,
+    ease: "sine.out",
+    delay: 1,
+  })
     .from(
       "#name",
       { x: 100, opacity: 0, duration: 0.6, ease: "power3.out" },
@@ -118,11 +121,32 @@ export function initAnimations() {
     .from("#controls", { opacity: 0, duration: 0.4 }, "-=0.1")
     .from(
       "#character",
-      { y: -800, duration: 1, ease: "power3.out", onStart: () => audio.play() },
+      {
+        y: () => -window.innerHeight * 1.1,
+        duration: 1,
+        ease: "power3.out",
+        onStart: () => audio.play(),
+      },
       "-=0.4",
     )
-    .from("#wave", { y: -800, duration: 0.8, ease: "power2.out" }, "<")
-    .from("#wave2", { y: -800, duration: 1, ease: "power2.out" }, "<");
+    .from(
+      "#wave",
+      {
+        y: () => -window.innerHeight,
+        duration: 0.8,
+        ease: "power2.out",
+      },
+      "<",
+    )
+    .from(
+      "#wave2",
+      {
+        y: () => -window.innerHeight,
+        duration: 1,
+        ease: "power2.out",
+      },
+      "<",
+    );
 
   startWaveMorph();
 }

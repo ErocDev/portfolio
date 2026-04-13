@@ -1,4 +1,5 @@
 import gsap from "gsap";
+import "./screenguard.js";
 import { initNavigation } from "./navigation.js";
 import { initAnimations } from "./animations.js";
 import { setIsTransitioning } from "./transitions.js";

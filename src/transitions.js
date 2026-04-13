@@ -11,13 +11,11 @@ menuNoise.volume = 0.6;
 export function getIsTransitioning() {
   return isTransitioning;
 }
-
 export function setIsTransitioning(value) {
   isTransitioning = value;
 }
 
 let currentSection = "hero";
-
 export function getCurrentSection() {
   return currentSection;
 }
@@ -72,23 +70,57 @@ function hideHero() {
       "-=0.3",
     )
     .to("#controls", { opacity: 0, duration: 0.4 }, "-=0.1")
-    .to(".geo-1", { y: -300, duration: 0.8, ease: "Sine.out" }, "<")
-    .to(".geo-2", { y: 600, duration: 0.8, ease: "Sine.out" }, "<")
-    .to("#wave", { y: -800, duration: 0.8, ease: "power2.out" }, "<")
-    .to("#wave2", { y: -800, duration: 1, ease: "power2.out" }, "<")
-    .to("#character", { y: -700, duration: 1, ease: "sine.out" }, "<")
-    .to(".geo-3", { x: -810, duration: 0.8, ease: "Sine.in" }, "<")
-    .to("#character", { x: 700, duration: 0.01 })
-    .to("#character", { y: 800, opacity: 0.5, duration: 0.01 })
+    .to(
+      ".geo-1",
+      { y: () => -window.innerHeight * 0.4, duration: 0.8, ease: "Sine.out" },
+      "<",
+    )
+    .to(
+      ".geo-2",
+      { y: () => window.innerHeight * 0.6, duration: 0.8, ease: "Sine.out" },
+      "<",
+    )
+    .to(
+      "#wave",
+      { y: () => -window.innerHeight, duration: 0.8, ease: "power2.out" },
+      "<",
+    )
+    .to(
+      "#wave2",
+      { y: () => -window.innerHeight, duration: 1, ease: "power2.out" },
+      "<",
+    )
+    .to(
+      "#character",
+      { y: () => -window.innerHeight * 0.9, duration: 1, ease: "sine.out" },
+      "<",
+    )
+    .to(
+      ".geo-3",
+      { x: () => -window.innerWidth * 0.6, duration: 0.8, ease: "Sine.in" },
+      "<",
+    )
+    .to("#character", { x: () => window.innerWidth * 0.5, duration: 0.01 })
+    .to("#character", {
+      y: () => window.innerHeight,
+      opacity: 0.5,
+      duration: 0.01,
+    })
     .to("#character", { rotate: 180, duration: 0.01 })
-    .to("#character", { x: -500, duration: 0.01 })
-    .to("#character", { y: 150, duration: 0.6, ease: "expo" });
+    .to("#character", { x: () => -window.innerWidth * 0.35, duration: 0.01 })
+    .to("#character", {
+      y: () => window.innerHeight * 0.14,
+      duration: 0.6,
+      ease: "expo",
+    });
+
   return tl;
 }
 
 function showAbout() {
   const tl = gsap.timeline();
   gsap.killTweensOf("#character");
+
   tl.to("#about-header-bar", {
     opacity: 1,
     x: 0,
@@ -214,7 +246,6 @@ export function transitionToAbout() {
   currentSection = "about";
 
   hideAbout();
-
   hideHero().then(() => {
     document.querySelector("#hero").style.visibility = "hidden";
     document.querySelector("#hero").style.pointerEvents = "none";
@@ -232,7 +263,11 @@ export function transitionToHero() {
   isTransitioning = true;
   currentSection = "hero";
 
-  gsap.to("#character", { y: 5000, duration: 1, ease: "sine.in" });
+  gsap.to("#character", {
+    y: () => window.innerHeight * 5,
+    duration: 1,
+    ease: "sine.in",
+  });
 
   gsap.to("#about", {
     opacity: 0,
@@ -295,8 +330,33 @@ export function transitionToHero() {
         duration: 0.6,
         ease: "power2.out",
       })
-        .from(".geo-1", { y: -300, duration: 0.8, ease: "Sine.out" }, "<")
-        .from(".geo-2", { y: 600, duration: 0.8, ease: "Sine.out" }, "<")
+        .from(
+          ".geo-1",
+          {
+            y: () => -window.innerHeight * 0.4,
+            duration: 0.8,
+            ease: "Sine.out",
+          },
+          "<",
+        )
+        .from(
+          ".geo-2",
+          {
+            y: () => window.innerHeight * 0.6,
+            duration: 0.8,
+            ease: "Sine.out",
+          },
+          "<",
+        )
+        .from(
+          ".geo-3",
+          {
+            x: () => -window.innerWidth * 0.6,
+            duration: 0.8,
+            ease: "Sine.out",
+          },
+          "<",
+        )
         .from("#handle", { opacity: 0, x: 50, duration: 0.4 }, "-=0.3")
         .from("#tagline", { opacity: 0, y: 10, duration: 0.4 }, "-=0.2")
         .from(
@@ -313,11 +373,19 @@ export function transitionToHero() {
         .from("#controls", { opacity: 0, duration: 0.4 }, "-=0.1")
         .from(
           "#character",
-          { y: -800, duration: 1, ease: "power3.out" },
+          { y: () => -window.innerHeight, duration: 1, ease: "power3.out" },
           "-=0.4",
         )
-        .from("#wave", { y: -800, duration: 0.8, ease: "power2.out" }, "<")
-        .from("#wave2", { y: -800, duration: 1, ease: "power2.out" }, "<");
+        .from(
+          "#wave",
+          { y: () => -window.innerHeight, duration: 0.8, ease: "power2.out" },
+          "<",
+        )
+        .from(
+          "#wave2",
+          { y: () => -window.innerHeight, duration: 1, ease: "power2.out" },
+          "<",
+        );
     },
   });
 }
