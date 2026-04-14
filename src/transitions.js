@@ -118,57 +118,8 @@ function hideHero() {
 }
 
 function showAbout() {
-  const tl = gsap.timeline();
-  gsap.killTweensOf("#character");
-
-  tl.to("#about-header-bar", {
-    opacity: 1,
-    x: 0,
-    duration: 0.5,
-    ease: "power3.out",
-  })
-    .to(
-      "#about-meta",
-      { opacity: 1, x: 0, duration: 0.4, ease: "power2.out" },
-      "-=0.2",
-    )
-    .to(
-      "#about-bio",
-      { opacity: 1, x: 0, duration: 0.4, ease: "power2.out" },
-      "-=0.2",
-    )
-    .to("#about-list", { opacity: 1, duration: 0.1 }, "-=0.3")
-    .to(
-      "#about-list .list-item",
-      { opacity: 1, x: 0, duration: 0.3, stagger: 0.08, ease: "power2.out" },
-      "-=0.1",
-    )
-    .to(
-      "#about-links",
-      { opacity: 1, x: 0, duration: 0.3, ease: "power2.out" },
-      "-=0.1",
-    )
-    .to(
-      "#about-divider",
-      { opacity: 0.8, duration: 0.4, ease: "power2.out" },
-      "-=0.3",
-    )
-    .to(
-      ".photo-box",
-      { opacity: 1, duration: 0.3, stagger: 0.1, ease: "power2.out" },
-      "-=0.2",
-    )
-    .to(
-      "#about-info-card",
-      { opacity: 1, y: 0, duration: 0.5, ease: "power3.out" },
-      "-=0.2",
-    )
-    .to(
-      "#about-controls",
-      { opacity: 1, y: 0, duration: 0.5, ease: "power3.out" },
-      "-=0.2",
-    )
-    .call(() => {
+  const tl = gsap.timeline({
+    onComplete: () => {
       gsap.to(".box-1", {
         y: -8,
         rotation: 3,
@@ -235,7 +186,57 @@ function showAbout() {
         repeat: -1,
         yoyo: true,
       });
-    });
+    },
+  });
+  gsap.killTweensOf("#character");
+
+  tl.to("#about-header-bar", {
+    opacity: 1,
+    x: 0,
+    duration: 0.5,
+    ease: "power3.out",
+  })
+    .to(
+      "#about-meta",
+      { opacity: 1, x: 0, duration: 0.4, ease: "power2.out" },
+      "-=0.2",
+    )
+    .to(
+      "#about-bio",
+      { opacity: 1, x: 0, duration: 0.4, ease: "power2.out" },
+      "-=0.2",
+    )
+    .to("#about-list", { opacity: 1, duration: 0.1 }, "-=0.3")
+    .to(
+      "#about-list .list-item",
+      { opacity: 1, x: 0, duration: 0.3, stagger: 0.08, ease: "power2.out" },
+      "-=0.1",
+    )
+    .to(
+      "#about-links",
+      { opacity: 1, x: 0, duration: 0.3, ease: "power2.out" },
+      "-=0.1",
+    )
+    .to(
+      "#about-divider",
+      { opacity: 0.8, duration: 0.4, ease: "power2.out" },
+      "-=0.3",
+    )
+    .to(
+      ".photo-box",
+      { opacity: 1, duration: 0.3, stagger: 0.1, ease: "power2.out" },
+      "-=0.2",
+    )
+    .to(
+      "#about-info-card",
+      { opacity: 1, y: 0, duration: 0.5, ease: "power3.out" },
+      "-=0.2",
+    )
+    .to(
+      "#about-controls",
+      { opacity: 1, y: 0, duration: 0.5, ease: "power3.out" },
+      "-=0.2",
+    );
 
   return tl;
 }

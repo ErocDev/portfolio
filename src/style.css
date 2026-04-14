@@ -293,7 +293,7 @@ body {
 }
 
 #menu ul li {
-  font-size: clamp(1.5rem, 2vw, 2.5rem);
+  font-size: clamp(1.5rem, 2vw, 4rem);
   letter-spacing: 0.1em;
   color: var(--text-secondary);
   cursor: pointer;
@@ -320,7 +320,7 @@ body {
 }
 
 #name {
-  font-size: clamp(4rem, 6.5vw, 8rem);
+  font-size: clamp(4rem, 6.5vw, 12rem);
   line-height: 0.9;
   color: var(--text-primary);
   text-align: right;
@@ -475,7 +475,7 @@ body {
 }
 
 #about-header h2 {
-  font-size: clamp(2.5rem, 4vw, 5rem);
+  font-size: clamp(2.5rem, 4vw, 8rem);
   color: var(--text-primary);
   letter-spacing: 0.1em;
   padding: 0;
@@ -524,7 +524,7 @@ body {
 }
 
 .meta-value {
-  font-size: clamp(3rem, 5vw, 6rem);
+  font-size: clamp(3rem, 5vw, 10rem);
   line-height: 1;
   color: var(--text-primary);
 }
@@ -603,15 +603,6 @@ body {
 
 /* ─── ABOUT INFO CARD ───────────────────────────────────────── */
 
-#about-photos {
-  width: clamp(250px, 28vw, 560px);
-  height: clamp(320px, 35vw, 700px);
-  position: absolute;
-  right: 3%;
-  top: 20%;
-  z-index: 1;
-}
-
 .card-label {
   display: block;
   font-size: 0.75rem;
@@ -633,7 +624,7 @@ body {
 }
 
 #about-info-card h3 {
-  font-size: clamp(2rem, 3vw, 3.5rem);
+  font-size: clamp(2rem, 3vw, 6rem);
   color: var(--accent-yellow);
   font-style: italic;
   margin-bottom: 0.3rem;
@@ -651,8 +642,12 @@ body {
 /* ─── ABOUT PHOTOS ──────────────────────────────────────────── */
 
 #about-photos {
-  width: clamp(250px, 28vw, 560px);
-  height: clamp(320px, 35vw, 700px);
+  width: clamp(250px, 30vw, 900px); /* was 35vw */
+  height: clamp(320px, 40vw, 1100px); /* was 45vw */
+  position: absolute;
+  right: 5%;
+  top: 10%;
+  z-index: 1;
 }
 
 .photo-box {
