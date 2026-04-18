@@ -1,0 +1,32 @@
+export const projects = [
+  {
+    name: "Portfolio Website",
+    label: "FEATURED",
+    desc: "A Persona 4 Golden inspired portfolio built with Vite, GSAP and Tailwind CSS. Features full keyboard navigation, animated transitions, and a custom audio system.",
+    stack: ["Vite", "GSAP", "JS", "Tailwind"],
+    github: "https://github.com/ErocDev/portfolio",
+    live: "https://eroc.dev",
+    image: "/src/assets/preview-portfolio.png",
+    wip: false,
+  },
+  {
+    name: "Taxi Booking Website",
+    label: "WEB",
+    desc: "A full-stack taxi booking web app built as part of a university synoptic project. Drivers can toggle availability, customers can request and complete rides in real time.",
+    stack: ["JS", "Node", "Express", "PostgreSQL"],
+    github: "https://github.com/ErocDev/taxi-booking-system",
+    live: null,
+    image: "/src/assets/preview-taxi.png",
+    wip: false,
+  },
+  {
+    name: "Study Planner",
+    label: "W.I.P",
+    desc: "A CLI-based study planner tool. Currently under active development.",
+    stack: ["Python", "CLI"],
+    github: null,
+    live: null,
+    image: null,
+    wip: true,
+  },
+];

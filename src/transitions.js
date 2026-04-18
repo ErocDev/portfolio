@@ -390,3 +390,26 @@ export function transitionToHero() {
     },
   });
 }
+
+export function transitionToProjects() {
+  if (currentSection === "projects" || isTransitioning) return;
+  isTransitioning = true;
+  currentSection = "projects";
+
+  hideAbout();
+
+  const prevSection = document.querySelector("#hero, #about");
+
+  gsap.to("#hero", { opacity: 0, duration: 0.3 });
+  gsap.to("#about", {
+    opacity: 0,
+    duration: 0.3,
+    onComplete: () => {
+      document.querySelector("#hero").style.visibility = "hidden";
+      document.querySelector("#about").style.visibility = "hidden";
+      document.querySelector("#projects").style.visibility = "visible";
+      document.querySelector("#projects").style.opacity = "1";
+      isTransitioning = false;
+    },
+  });
+}

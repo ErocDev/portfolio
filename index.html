@@ -138,7 +138,110 @@
       </section>
 
       <!--Projects-->
-      <section id="projects"></section>
+      <section id="projects">
+
+        <!-- ── LEFT: project list ── -->
+        <div id="projects-list">
+          
+          <div id="projects-controls">
+            <span><span class="key-wide">W</span> / <span class="key-wide">S</span> NAVIGATE</span>
+            <span><span class="key-wide">ENTER</span> OPEN</span>
+            <span><span class="key-wide">ESC</span> BACK</span>
+          </div>
+
+          <div id="projects-list-header">
+            <div id="projects-title-bar">
+              <h2>PROJECTS</h2>
+            </div>
+            <p id="projects-subtitle">SELECT A PROJECT</p>
+          </div>
+
+          <div class="project-row active" data-index="0" style="--row-color: #4a9eff;">
+            <div class="row-label">FEATURED</div>
+            <div class="row-inner">
+              <div class="row-number">01</div>
+              <div class="row-meta">
+                <span class="row-name">Portfolio Website</span>
+                <div class="row-tags">
+                  <span class="row-tag">Vite</span>
+                  <span class="row-tag">GSAP</span>
+                  <span class="row-tag">JS</span>
+                  <span class="row-tag">Tailwind</span>
+                  <span class="row-year">2026</span>
+                </div>
+              </div>
+              <div class="row-arrow">◀</div>
+            </div>
+          </div>
+
+          <div class="project-row" data-index="1" style="--row-color: #e63946;">
+            <div class="row-label">WEB</div>
+            <div class="row-inner">
+              <div class="row-number">02</div>
+              <div class="row-meta">
+                <span class="row-name">Taxi Booking Website</span>
+                <div class="row-tags">
+                  <span class="row-tag">JS</span>
+                  <span class="row-tag">Node</span>
+                  <span class="row-tag">Express</span>
+                  <span class="row-tag">PostgreSQL</span>
+                  <span class="row-year">2025</span>
+                </div>
+              </div>
+              <div class="row-arrow">◀</div>
+            </div>
+          </div>
+          <div class="project-row wip" data-index="2" style="--row-color: #666666;">
+            <div class="row-label">W.I.P</div>
+            <div class="row-inner">
+              <div class="row-number">03</div>
+              <div class="row-meta">
+                <span class="row-name">Study Planner<span class="row-status"> ⚠ UNDER MAINTENANCE</span></span>
+                <div class="row-tags">
+                  <span class="row-tag">Python</span>
+                  <span class="row-tag">CLI</span>
+                  <span class="row-year">2026</span>
+                </div>
+              </div>
+              <div class="row-arrow">◀</div>
+            </div>
+          </div>
+        </div>
+        <!-- ── RIGHT: project detail ── -->
+        <div id="projects-detail">
+
+          <div id="project-preview-wrap">
+            <div id="project-preview">
+              <div id="project-preview-placeholder">
+                <span>NO PREVIEW</span>
+              </div>
+              <img id="project-preview-img" src="" alt="" style="display:none;" />
+              <div id="preview-corner-tl"></div>
+              <div id="preview-corner-br"></div>
+            </div>
+          </div>
+
+          <div id="project-info-panel">
+            <div id="project-info-top">
+              <span id="project-info-label">PROFILE</span>
+              <h3 id="project-info-name">Portfolio Website</h3>
+              <p id="project-info-desc">
+                A Persona 4 Golden inspired portfolio built with Vite, GSAP and Tailwind CSS.
+                Features full keyboard navigation, animated transitions, and a
+                custom audio system.
+              </p>
+            </div>
+            <div id="project-info-bottom">
+              <div id="project-stack-list"></div>
+              <div id="project-links">
+                <a href="#" class="proj-link" id="proj-link-github">GITHUB</a>
+                <a href="#" class="proj-link" id="proj-link-live">LIVE SITE</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </section>
 
       <!--Skills-->
       <section id="skills"></section>
