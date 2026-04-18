@@ -31,6 +31,74 @@ const heroElements = [
   ".geo-2",
 ];
 
+// ── RESET / HIDE HELPERS ──────────────────────────────────────
+
+function hideProjects() {
+  gsap.set("#projects-list-header", { opacity: 0, x: -40 });
+  gsap.set(".project-row", { opacity: 0, x: -30 });
+  gsap.set("#projects-detail", { opacity: 0, x: 40 });
+  gsap.set("#project-info-panel", { opacity: 0, y: 30 });
+  gsap.set("#projects-controls", { opacity: 0, y: 10 });
+}
+
+function showProjects() {
+  const tl = gsap.timeline({
+    onComplete: () => {
+      isTransitioning = false;
+    },
+  });
+
+  tl.to("#projects-list-header", {
+    opacity: 1,
+    x: 0,
+    duration: 0.5,
+    ease: "power3.out",
+  })
+    .to(
+      ".project-row",
+      {
+        opacity: 1,
+        x: 0,
+        duration: 0.35,
+        stagger: 0.08,
+        ease: "power2.out",
+      },
+      "-=0.2",
+    )
+    .to(
+      "#projects-detail",
+      {
+        opacity: 1,
+        x: 0,
+        duration: 0.5,
+        ease: "power3.out",
+      },
+      "-=0.3",
+    )
+    .to(
+      "#project-info-panel",
+      {
+        opacity: 1,
+        y: 0,
+        duration: 0.4,
+        ease: "power2.out",
+      },
+      "-=0.2",
+    )
+    .to(
+      "#projects-controls",
+      {
+        opacity: 1,
+        y: 0,
+        duration: 0.4,
+        ease: "power2.out",
+      },
+      "-=0.2",
+    );
+
+  return tl;
+}
+
 function hideAbout() {
   gsap.killTweensOf(".box-1");
   gsap.killTweensOf(".box-2");
@@ -241,6 +309,8 @@ function showAbout() {
   return tl;
 }
 
+// ── TRANSITIONS ───────────────────────────────────────────────
+
 export function transitionToAbout() {
   if (currentSection === "about" || isTransitioning) return;
   isTransitioning = true;
@@ -258,6 +328,21 @@ export function transitionToAbout() {
   });
 }
 
+export function transitionToProjects() {
+  if (currentSection === "projects" || isTransitioning) return;
+  isTransitioning = true;
+  currentSection = "projects";
+  hideProjects();
+  hideHero().then(() => {
+    document.querySelector("#hero").style.visibility = "hidden";
+    document.querySelector("#hero").style.pointerEvents = "none";
+    document.querySelector("#about").style.visibility = "hidden";
+    document.querySelector("#projects").style.visibility = "visible";
+    document.querySelector("#projects").style.opacity = "1";
+    showProjects();
+  });
+}
+
 export function transitionToHero() {
   if (currentSection === "hero" || isTransitioning) return;
   menuNoise.play();
@@ -270,11 +355,13 @@ export function transitionToHero() {
     ease: "sine.in",
   });
 
-  gsap.to("#about", {
+  gsap.to("#about", { opacity: 0, duration: 0.4 });
+  gsap.to("#projects", {
     opacity: 0,
     duration: 0.4,
     onComplete: () => {
       document.querySelector("#about").style.visibility = "hidden";
+      document.querySelector("#projects").style.visibility = "hidden";
       document.querySelector("#hero").style.visibility = "visible";
       document.querySelector("#hero").style.pointerEvents = "auto";
       gsap.set(heroElements, { clearProps: "all" });
@@ -387,29 +474,6 @@ export function transitionToHero() {
           { y: () => -window.innerHeight, duration: 1, ease: "power2.out" },
           "<",
         );
-    },
-  });
-}
-
-export function transitionToProjects() {
-  if (currentSection === "projects" || isTransitioning) return;
-  isTransitioning = true;
-  currentSection = "projects";
-
-  hideAbout();
-
-  const prevSection = document.querySelector("#hero, #about");
-
-  gsap.to("#hero", { opacity: 0, duration: 0.3 });
-  gsap.to("#about", {
-    opacity: 0,
-    duration: 0.3,
-    onComplete: () => {
-      document.querySelector("#hero").style.visibility = "hidden";
-      document.querySelector("#about").style.visibility = "hidden";
-      document.querySelector("#projects").style.visibility = "visible";
-      document.querySelector("#projects").style.opacity = "1";
-      isTransitioning = false;
     },
   });
 }
