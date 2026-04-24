@@ -1,3 +1,6 @@
+import portfolioPreview from "./assets/preview-portfolio.png";
+import taxiPreview from "./assets/preview-taxi.png";
+
 export const projects = [
   {
     name: "Portfolio Website",
@@ -6,7 +9,7 @@ export const projects = [
     stack: ["Vite", "GSAP", "JS", "Tailwind"],
     github: "https://github.com/ErocDev/portfolio",
     live: "https://eroc.dev",
-    image: "/src/assets/preview-portfolio.png",
+    image: portfolioPreview,
     wip: false,
   },
   {
@@ -16,7 +19,7 @@ export const projects = [
     stack: ["JS", "Node", "Express", "PostgreSQL"],
     github: "https://github.com/ErocDev/taxi-booking-system",
     live: null,
-    image: "/src/assets/preview-taxi.png",
+    image: taxiPreview,
     wip: false,
   },
   {
