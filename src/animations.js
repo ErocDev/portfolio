@@ -89,6 +89,7 @@ export function startWaveMorph() {
 }
 
 export function initAnimations() {
+  setIsTransitioning(true);
   gsap.set(".geo-1", { rotation: 45 });
   gsap.set(".geo-2", { rotation: 20 });
 
