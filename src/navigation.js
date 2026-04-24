@@ -110,7 +110,7 @@ document.addEventListener("keydown", (e) => {
   const section = getCurrentSection();
 
   // ── PROJECTS section keys ──
-  if (section === "projects") {
+  if (section === "projects" && !getIsTransitioning()) {
     if (e.key === "s" || e.key === "S") {
       selectNoise.play();
       const next = projectIndex + 1;
@@ -135,7 +135,7 @@ document.addEventListener("keydown", (e) => {
         window.open(p.github, "_blank");
       }
     }
-    if (e.key === "Escape") {
+    if (e.key === "Escape" && !getIsTransitioning()) {
       projectIndex = 0;
       updateProjectRows(0);
       transitionToHero();
@@ -144,36 +144,38 @@ document.addEventListener("keydown", (e) => {
   }
 
   // ── HERO section keys ──
-  if (e.key === "w" || e.key === "W") {
-    selectNoise.play();
-    if (selectedIndex === 0) {
-      selectedIndex = 3;
-    } else {
-      selectedIndex = Math.max(0, selectedIndex - 1);
-    }
-    updateMenu();
-  }
-  if (e.key === "s" || e.key === "S") {
-    selectNoise.play();
-    if (selectedIndex === 3) {
-      selectedIndex = 0;
-    } else {
-      selectedIndex = Math.min(menuItems.length - 1, selectedIndex + 1);
-    }
-    updateMenu();
-  }
-  if (e.key === "Enter" && !isOnStartScreen()) {
-    if (!getIsTransitioning() || getCurrentSection() == "hero") {
+  if (section === "hero" && !getIsTransitioning()) {
+    if (e.key === "w" || e.key === "W") {
+      selectNoise.play();
       if (selectedIndex === 0) {
-        enterNoise.play();
-        transitionToAbout();
-      } else if (selectedIndex === 1) {
-        enterNoise.play();
-        transitionToProjects();
+        selectedIndex = 3;
+      } else {
+        selectedIndex = Math.max(0, selectedIndex - 1);
+      }
+      updateMenu();
+    }
+    if (e.key === "s" || e.key === "S") {
+      selectNoise.play();
+      if (selectedIndex === 3) {
+        selectedIndex = 0;
+      } else {
+        selectedIndex = Math.min(menuItems.length - 1, selectedIndex + 1);
+      }
+      updateMenu();
+    }
+    if (e.key === "Enter" && !isOnStartScreen()) {
+      if (!getIsTransitioning() || getCurrentSection() == "hero") {
+        if (selectedIndex === 0) {
+          enterNoise.play();
+          transitionToAbout();
+        } else if (selectedIndex === 1) {
+          enterNoise.play();
+          transitionToProjects();
+        }
       }
     }
   }
-  if (e.key === "Escape") {
+  if (e.key === "Escape" && !getIsTransitioning()) {
     transitionToHero();
   }
 });
