@@ -1,4 +1,5 @@
-const BREAKPOINT = 1024;
+const BREAKPOINT_WIDTH = 1024;
+const BREAKPOINT_HEIGHT = 600;
 const overlay = document.querySelector("#too-small");
 
 function blockInput(e) {
@@ -6,7 +7,7 @@ function blockInput(e) {
 }
 
 function check() {
-  if (window.innerWidth < BREAKPOINT) {
+  if (window.innerWidth < BREAKPOINT_WIDTH || window.innerHeight < BREAKPOINT_HEIGHT) {
     overlay.classList.add("visible");
     window.addEventListener("keydown", blockInput, true);
     window.addEventListener("click", blockInput, true);
