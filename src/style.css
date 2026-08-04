@@ -24,8 +24,7 @@ body {
 #hero,
 #about,
 #projects,
-#skills,
-#contact {
+#skills {
   position: fixed;
   top: 0;
   left: 0;

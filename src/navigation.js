@@ -147,7 +147,7 @@ document.addEventListener("keydown", (e) => {
     if (e.key === "w" || e.key === "W") {
       selectNoise.play();
       if (selectedIndex === 0) {
-        selectedIndex = 3;
+        selectedIndex = menuItems.length - 1;
       } else {
         selectedIndex = Math.max(0, selectedIndex - 1);
       }
@@ -155,7 +155,7 @@ document.addEventListener("keydown", (e) => {
     }
     if (e.key === "s" || e.key === "S") {
       selectNoise.play();
-      if (selectedIndex === 3) {
+      if (selectedIndex === menuItems.length - 1) {
         selectedIndex = 0;
       } else {
         selectedIndex = Math.min(menuItems.length - 1, selectedIndex + 1);
