@@ -288,7 +288,7 @@ body {
   list-style: none;
 }
 
-#menu ul li:hover {
+#menu ul li.active {
   color: var(--accent-yellow);
 }
 
@@ -408,6 +408,7 @@ body {
   left: 50%;
   z-index: 2;
   opacity: 0.15;
+  pointer-events: none;
 }
 
 #character img {
@@ -527,22 +528,6 @@ body {
   font-size: clamp(3rem, 5vw, 10rem);
   line-height: 1;
   color: var(--text-primary);
-}
-
-.meta-stars {
-  display: flex;
-  gap: 0.2rem;
-}
-
-.star.filled {
-  color: var(--accent-yellow);
-  font-size: clamp(0.8rem, 1vw, 1.2rem);
-}
-
-.star.empty {
-  color: var(--text-secondary);
-  opacity: 0.4;
-  font-size: clamp(0.8rem, 1vw, 1.2rem);
 }
 
 #about-bio {

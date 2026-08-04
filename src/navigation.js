@@ -92,10 +92,8 @@ export function setAnimationsReady(value = true) {
 export function updateMenu() {
   menuItems.forEach((item, index) => {
     if (index === selectedIndex) {
-      item.style.color = "var(--accent-yellow)";
       item.classList.add("active");
     } else {
-      item.style.color = "var(--text-secondary)";
       item.classList.remove("active");
       gsap.killTweensOf(item);
       gsap.set(item, { x: 0 });
@@ -179,6 +177,70 @@ document.addEventListener("keydown", (e) => {
     transitionToHero();
   }
 });
+
+// ── MOUSE / CLICK SUPPORT ──────────────────────────────────────
+
+// Menu items (About / Projects) — Skills & Contact are no-ops until built
+menuItems.forEach((item, index) => {
+  item.style.cursor = "pointer";
+
+  item.addEventListener("mouseenter", () => {
+    if (isOnStartScreen() || getIsTransitioning() || getCurrentSection() !== "hero") return;
+    selectedIndex = index;
+    selectNoise.pause()
+    selectNoise.currentTime = 0;
+    selectNoise.play();
+    updateMenu();
+  });
+
+  item.addEventListener("click", () => {
+    if (isOnStartScreen() || getIsTransitioning() || getCurrentSection() !== "hero") return;
+
+    selectedIndex = index;
+    updateMenu();
+
+    if (index === 0) {
+      enterNoise.play();
+      transitionToAbout();
+    } else if (index === 1) {
+      enterNoise.play();
+      transitionToProjects();
+    }
+  });
+});
+
+// Project rows — click to select (GitHub/Live links already work natively as <a> tags)
+projectRows.forEach((row, index) => {
+  if (projects[index].wip) return; // don't make W.I.P rows clickable
+  row.style.cursor = "pointer";
+  row.addEventListener("click", () => {
+    if (getIsTransitioning()) return;
+    selectNoise.play();
+    projectIndex = index;
+    updateProjectRows(projectIndex);
+  });
+});
+
+// "ESC Back to Menu" controls — clickable back-out
+const aboutBackControl = document.querySelector("#about-controls");
+if (aboutBackControl) {
+  aboutBackControl.style.cursor = "pointer";
+  aboutBackControl.addEventListener("click", () => {
+    if (!getIsTransitioning()) transitionToHero();
+  });
+}
+
+const projectsBackControl = document.getElementById("projects-back-control");
+if (projectsBackControl) {
+  projectsBackControl.style.cursor = "pointer";
+  projectsBackControl.addEventListener("click", () => {
+    if (!getIsTransitioning()) {
+      projectIndex = 0;
+      updateProjectRows(0);
+      transitionToHero();
+    }
+  });
+}
 
 export function initNavigation() {
   updateMenu();

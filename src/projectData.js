@@ -3,6 +3,36 @@ import taxiPreview from "./assets/preview-taxi.png";
 
 export const projects = [
   {
+    name: "Study Planner",
+    label: "GROUP",
+    desc: "A full-stack study planning app with module and assignment management, and a dashboard built on CTE-based SQL queries. Built as part of a university group project.",
+    stack: ["React", "TypeScript", "Node", "Express", "PostgreSQL"],
+    github: null,
+    live: null,
+    image: null,
+    wip: false,
+  },
+  {
+    name: "Food Bank Kiosk System",
+    label: "GROUP",
+    desc: "A full-stack kiosk system for food bank resident registration and stock management, featuring QR-based check-in and role-based access control.",
+    stack: ["React", "TypeScript", "Spring Boot", "PostgreSQL"],
+    github: "https://github.com/ErocDev/recycling-kiosk-for-food-banks",
+    live: null,
+    image: null,
+    wip: false,
+  },
+  {
+    name: "Badminton Match Tracker",
+    label: "PERSONAL",
+    desc: "A Python package for tracking and analysing badminton match stats, built with Flask, dataclasses and JSON persistence.",
+    stack: ["Python", "Flask", "JSON"],
+    github: "https://github.com/ErocDev/shuttle-stats",
+    live: null,
+    image: null,
+    wip: false,
+  },
+  {
     name: "Portfolio Website",
     label: "FEATURED",
     desc: "A Persona 4 Golden inspired portfolio built with Vite, GSAP and Tailwind CSS. Features full keyboard navigation, animated transitions, and a custom audio system.",
@@ -21,15 +51,5 @@ export const projects = [
     live: null,
     image: taxiPreview,
     wip: false,
-  },
-  {
-    name: "Study Planner",
-    label: "W.I.P",
-    desc: "A CLI-based study planner tool. Currently under active development.",
-    stack: ["Python", "CLI"],
-    github: null,
-    live: null,
-    image: null,
-    wip: true,
   },
 ];
