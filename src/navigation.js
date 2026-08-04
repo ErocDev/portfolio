@@ -4,6 +4,7 @@ import {
   transitionToAbout,
   transitionToHero,
   transitionToProjects,
+  transitionToSkills,
   getIsTransitioning,
   getCurrentSection,
 } from "./transitions.js";
@@ -169,6 +170,9 @@ document.addEventListener("keydown", (e) => {
         } else if (selectedIndex === 1) {
           enterNoise.play();
           transitionToProjects();
+        } else if (selectedIndex === 2) {
+          enterNoise.play();
+          transitionToSkills();
         }
       }
     }
@@ -180,7 +184,7 @@ document.addEventListener("keydown", (e) => {
 
 // ── MOUSE / CLICK SUPPORT ──────────────────────────────────────
 
-// Menu items (About / Projects) — Skills & Contact are no-ops until built
+// Menu items (About / Projects) — Contact are no-op until built
 menuItems.forEach((item, index) => {
   item.style.cursor = "pointer";
 
@@ -205,6 +209,9 @@ menuItems.forEach((item, index) => {
     } else if (index === 1) {
       enterNoise.play();
       transitionToProjects();
+    } else if (index === 2) {
+      enterNoise.play();
+      transitionToSkills();
     }
   });
 });
@@ -239,6 +246,14 @@ if (projectsBackControl) {
       updateProjectRows(0);
       transitionToHero();
     }
+  });
+}
+
+const skillsBackControl = document.getElementById("skills-back-control");
+if (skillsBackControl) {
+  skillsBackControl.style.cursor = "pointer";
+  skillsBackControl.addEventListener("click", () => {
+    if (!getIsTransitioning()) transitionToHero();
   });
 }
 

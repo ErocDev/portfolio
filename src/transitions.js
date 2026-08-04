@@ -309,6 +309,48 @@ function showAbout() {
   return tl;
 }
 
+function hideSkills() {
+  gsap.killTweensOf(".skills-category");
+  gsap.killTweensOf("#skills-divider");
+  gsap.set("#skills-header-bar", { opacity: 0, x: -50 });
+  gsap.set("#skills-subtitle", { opacity: 0, x: -50 });
+  gsap.set(".skills-category", { opacity: 0, y: 20 });
+  gsap.set("#skills-controls", { opacity: 0, y: 10 });
+  gsap.set("#skills-divider", { opacity: 0 });
+}
+
+function showSkills() {
+  const tl = gsap.timeline({
+    onComplete: () => {
+      isTransitioning = false;
+      document.querySelectorAll(".skills-category").forEach((cat, i) => {
+        gsap.to(cat, {
+          y: -6,
+          duration: 2.4,
+          ease: "sine.inOut",
+          repeat: -1,
+          yoyo: true,
+          delay: i * 0.3,
+        });
+      });
+      gsap.to("#skills-divider", {
+        y: 40,
+        duration: 3.5,
+        ease: "sine.inOut",
+        repeat: -1,
+        yoyo: true,
+      });
+    },
+  });
+
+  tl.to("#skills-header-bar", { opacity: 1, x: 0, duration: 0.5, ease: "power3.out" })
+    .to("#skills-subtitle", { opacity: 1, x: 0, duration: 0.4, ease: "power2.out" }, "-=0.3")
+    .to(".skills-category", { opacity: 1, y: 0, duration: 0.4, stagger: 0.12, ease: "power2.out" }, "-=0.2")
+    .to("#skills-controls", { opacity: 1, y: 0, duration: 0.4, ease: "power2.out" }, "-=0.2")
+    .to("#skills-divider", { opacity: 0.8, duration: 0.8, ease: "power2.out" }, "-=0.4");
+
+  return tl;
+}
 // ── TRANSITIONS ───────────────────────────────────────────────
 
 export function transitionToAbout() {
@@ -343,6 +385,22 @@ export function transitionToProjects() {
   });
 }
 
+export function transitionToSkills() {
+  if (currentSection === "skills" || isTransitioning) return;
+  isTransitioning = true;
+  currentSection = "skills";
+  hideSkills();
+  hideHero().then(() => {
+    document.querySelector("#hero").style.visibility = "hidden";
+    document.querySelector("#hero").style.pointerEvents = "none";
+    document.querySelector("#about").style.visibility = "hidden";
+    document.querySelector("#projects").style.visibility = "hidden";
+    document.querySelector("#skills").style.visibility = "visible";
+    document.querySelector("#skills").style.opacity = "1";
+    showSkills();
+  });
+}
+
 export function transitionToHero() {
   if (currentSection === "hero" || isTransitioning) return;
   menuNoise.play();
@@ -355,13 +413,13 @@ export function transitionToHero() {
     ease: "sine.in",
   });
 
-  gsap.to("#about", { opacity: 0, duration: 0.4 });
-  gsap.to("#projects", {
+  gsap.to(["#about", "#projects", "#skills"], {
     opacity: 0,
     duration: 0.4,
     onComplete: () => {
       document.querySelector("#about").style.visibility = "hidden";
       document.querySelector("#projects").style.visibility = "hidden";
+      document.querySelector("#skills").style.visibility = "hidden";
       document.querySelector("#hero").style.visibility = "visible";
       document.querySelector("#hero").style.pointerEvents = "auto";
       gsap.set(heroElements, { clearProps: "all" });

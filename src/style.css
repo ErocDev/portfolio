@@ -1096,3 +1096,130 @@ body {
   letter-spacing: 0.15em;
   z-index: 3;
 }
+
+/* ─── SKILLS SECTION ────────────────────────────────────────── */
+
+#skills {
+  padding: 4% 8%;
+  overflow: hidden;
+  visibility: hidden;
+  opacity: 0;
+  z-index: 4;
+}
+
+#skills-divider {
+  position: absolute;
+  width: 120%;
+  height: clamp(20px, 3vh, 40px);
+  background: var(--accent-yellow);
+  top: 55%;
+  left: -10%;
+  transform: rotate(-20deg);
+  opacity: 0.1;
+  z-index: 0;
+}
+
+#skills-header {
+  position: relative;
+  z-index: 2;
+}
+
+#skills-header-bar {
+  display: inline-block;
+  background: black;
+  padding: 0.5rem 2rem;
+  clip-path: polygon(0% 0%, 100% 0%, 92% 100%, 0% 100%);
+  margin-bottom: 0.4rem;
+}
+
+#skills-header-bar h2 {
+  font-size: clamp(2.5rem, 4vw, 8rem);
+  color: var(--text-primary);
+  letter-spacing: 0.1em;
+  margin: 0;
+}
+
+#skills-subtitle {
+  font-size: clamp(0.6rem, 0.7vw, 0.8rem);
+  color: var(--accent-yellow);
+  letter-spacing: 0.35em;
+  font-style: italic;
+  margin-bottom: 3rem;
+}
+
+#skills-content {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  gap: clamp(1.6rem, 2.6vh, 2.4rem);
+  max-width: 950px;
+}
+
+.skills-category {
+  display: flex;
+  align-items: flex-start;
+  gap: clamp(1rem, 2vw, 2rem);
+  border-left: 3px solid var(--cat-color);
+  padding-left: clamp(1rem, 1.5vw, 1.8rem);
+}
+
+.category-number {
+  font-size: clamp(2rem, 3vw, 4.5rem);
+  font-style: italic;
+  color: var(--cat-color);
+  opacity: 0.3;
+  line-height: 1;
+  flex-shrink: 0;
+}
+
+.category-body {
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+}
+
+.category-label {
+  font-size: 0.85rem;
+  color: var(--cat-color);
+  letter-spacing: 0.3em;
+  font-style: italic;
+}
+
+.skills-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+}
+
+.skill-tag {
+  font-size: clamp(0.85rem, 1vw, 1.1rem);
+  font-family: "Barlow Condensed", sans-serif;
+  color: var(--text-primary);
+  background: color-mix(in srgb, var(--cat-color) 12%, var(--bg-secondary));
+  border: 1px solid var(--cat-color);
+  padding: 6px 16px;
+  letter-spacing: 0.08em;
+  opacity: 0.9;
+  transition: opacity 0.2s ease, transform 0.2s ease, background 0.2s ease;
+}
+
+.skill-tag:hover {
+  opacity: 1;
+  background: color-mix(in srgb, var(--cat-color) 22%, var(--bg-secondary));
+  transform: translateY(-2px);
+}
+
+#skills-controls {
+  position: absolute;
+  bottom: 2rem;
+  left: 8%;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 1rem;
+  color: var(--text-secondary);
+  letter-spacing: 0.15em;
+  z-index: 3;
+  cursor: pointer;
+}
