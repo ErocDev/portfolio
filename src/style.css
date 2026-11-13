@@ -1096,6 +1096,77 @@ body {
   z-index: 3;
 }
 
+.preview-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(0, 0, 0, 0.55);
+  border: 1px solid var(--accent-yellow);
+  color: var(--accent-yellow);
+  width: 2.2rem;
+  height: 2.2rem;
+  font-size: 1.5rem;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 3;
+  opacity: 0.75;
+  transition: opacity 0.2s ease, background 0.2s ease;
+}
+
+.preview-arrow:hover {
+  opacity: 1;
+  background: rgba(0, 0, 0, 0.8);
+}
+
+.preview-arrow.hidden {
+  display: none;
+}
+
+#preview-arrow-prev {
+  left: 0.75rem;
+}
+
+#preview-arrow-next {
+  right: 0.75rem;
+}
+
+#preview-dots {
+  display: none;
+  justify-content: center;
+  gap: 0.5rem;
+  padding-top: 0.6rem;
+}
+
+.preview-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.25);
+  cursor: pointer;
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.preview-dot:hover {
+  background: rgba(245, 197, 24, 0.5);
+}
+
+.preview-dot.active {
+  background: var(--accent-yellow);
+  transform: scale(1.25);
+}
+
+#project-preview-video {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  background: black;
+}
+
+
+
 /* ─── SKILLS SECTION ────────────────────────────────────────── */
 
 #skills {

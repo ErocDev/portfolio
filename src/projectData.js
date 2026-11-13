@@ -1,5 +1,8 @@
 import portfolioPreview from "./assets/preview-portfolio.png";
 import taxiPreview from "./assets/preview-taxi.png";
+import taxiDemo from "./assets/taxi-demo.mp4";
+import shuttlePreview from "./assets/preview-shuttle.png";
+import shuttleDemo from "./assets/shuttle-demo.mp4";
 
 export const projects = [
   {
@@ -9,7 +12,7 @@ export const projects = [
     stack: ["React", "TypeScript", "Node", "Express", "PostgreSQL"],
     github: null,
     live: null,
-    image: null,
+    media: [],
     wip: false,
   },
   {
@@ -17,9 +20,9 @@ export const projects = [
     label: "GROUP",
     desc: "A full-stack kiosk system for food bank resident registration and stock management, featuring QR-based check-in and role-based access control.",
     stack: ["React", "TypeScript", "Spring Boot", "PostgreSQL"],
-    github: "https://github.com/ErocDev/recycling-kiosk-for-food-banks",
+    github: "https://github.com/ErocDev/food-bank-kiosk-system",
     live: null,
-    image: null,
+    media: [],
     wip: false,
   },
   {
@@ -29,7 +32,10 @@ export const projects = [
     stack: ["Python", "Flask", "JSON"],
     github: "https://github.com/ErocDev/shuttle-stats",
     live: null,
-    image: null,
+    media: [
+      { type: "video", src: shuttleDemo },
+      { type: "image", src: shuttlePreview }
+    ],
     wip: false,
   },
   {
@@ -39,7 +45,7 @@ export const projects = [
     stack: ["Vite", "GSAP", "JS", "Tailwind"],
     github: "https://github.com/ErocDev/portfolio",
     live: "https://eroc.dev",
-    image: portfolioPreview,
+    media: [{ type: "image", src: portfolioPreview }],
     wip: false,
   },
   {
@@ -49,7 +55,10 @@ export const projects = [
     stack: ["JS", "Node", "Express", "PostgreSQL"],
     github: "https://github.com/ErocDev/taxi-booking-system",
     live: null,
-    image: taxiPreview,
+    media: [
+      { type: "video", src: taxiDemo },
+      { type: "image", src: taxiPreview }
+          ],
     wip: false,
-  },
+  },                                                                                                                                                                                                                                                                                                                                                                                                                                         
 ];

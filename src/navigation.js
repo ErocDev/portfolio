@@ -25,33 +25,98 @@ let animationsReady = false;
 const projectRows = document.querySelectorAll(".project-row");
 let projectIndex = 0;
 
+let currentMediaIndex = 0;
+
+function getMedia(p) {
+  return p.media && p.media.length ? p.media : [];
+}
+
+function renderMedia(p, mediaIdx) {
+  const media = getMedia(p);
+  const placeholder = document.getElementById("project-preview-placeholder");
+  const imgEl = document.getElementById("project-preview-img");
+  const videoEl = document.getElementById("project-preview-video");
+
+  videoEl.pause();
+  videoEl.removeAttribute("src");
+  videoEl.load();
+
+  if (media.length === 0) {
+    placeholder.style.display = "flex";
+    imgEl.style.display = "none";
+    videoEl.style.display = "none";
+    return;
+  }
+
+  const item = media[mediaIdx];
+  placeholder.style.display = "none";
+
+  if (item.type === "video") {
+    imgEl.style.display = "none";
+    videoEl.style.display = "block";
+    videoEl.src = item.src;
+    videoEl.load();
+  } else {
+    videoEl.style.display = "none";
+    imgEl.style.display = "block";
+    imgEl.src = item.src;
+  }
+}
+
+function renderDots(p, mediaIdx) {
+  const media = getMedia(p);
+  const dotsEl = document.getElementById("preview-dots");
+  dotsEl.innerHTML = "";
+
+  if (media.length <= 1) {
+    dotsEl.style.display = "none";
+    return;
+  }
+
+  dotsEl.style.display = "flex";
+  media.forEach((_, i) => {
+    const dot = document.createElement("span");
+    dot.classList.add("preview-dot");
+    if (i === mediaIdx) dot.classList.add("active");
+    dot.addEventListener("click", () => {
+      currentMediaIndex = i;
+      renderMedia(p, currentMediaIndex);
+      renderDots(p, currentMediaIndex);
+    });
+    dotsEl.appendChild(dot);
+  });
+}
+
+function updateArrows(p) {
+  const media = getMedia(p);
+  const prevBtn = document.getElementById("preview-arrow-prev");
+  const nextBtn = document.getElementById("preview-arrow-next");
+  if (media.length <= 1) {
+    prevBtn.classList.add("hidden");
+    nextBtn.classList.add("hidden");
+  } else {
+    prevBtn.classList.remove("hidden");
+    nextBtn.classList.remove("hidden");
+  }
+}
+
 function updateProjectPanel(index) {
   const p = projects[index];
+  currentMediaIndex = 0;
 
   document.getElementById("project-info-name").textContent = p.name;
   document.getElementById("project-info-desc").textContent = p.desc;
   document.getElementById("project-info-label").textContent = p.label;
 
-  // swap preview image
-  const placeholder = document.getElementById("project-preview-placeholder");
-  const img = document.getElementById("project-preview-img");
+  renderMedia(p, currentMediaIndex);
+  renderDots(p, currentMediaIndex);
+  updateArrows(p);
 
-  if (p.image) {
-    img.src = p.image;
-    img.style.display = "block";
-    placeholder.style.display = "none";
-  } else {
-    img.style.display = "none";
-    placeholder.style.display = "flex";
-  }
-
-  // stack tags
   const stackEl = document.getElementById("project-stack-list");
   stackEl.innerHTML = p.stack
     .map((t) => `<span class="stack-tag">${t}</span>`)
     .join("");
 
-  // links
   const githubLink = document.getElementById("proj-link-github");
   const liveLink = document.getElementById("proj-link-live");
 
@@ -226,6 +291,24 @@ projectRows.forEach((row, index) => {
     projectIndex = index;
     updateProjectRows(projectIndex);
   });
+});
+
+document.getElementById("preview-arrow-prev").addEventListener("click", () => {
+  const p = projects[projectIndex];
+  const media = getMedia(p);
+  if (media.length <= 1) return;
+  currentMediaIndex = (currentMediaIndex - 1 + media.length) % media.length;
+  renderMedia(p, currentMediaIndex);
+  renderDots(p, currentMediaIndex);
+});
+
+document.getElementById("preview-arrow-next").addEventListener("click", () => {
+  const p = projects[projectIndex];
+  const media = getMedia(p);
+  if (media.length <= 1) return;
+  currentMediaIndex = (currentMediaIndex + 1) % media.length;
+  renderMedia(p, currentMediaIndex);
+  renderDots(p, currentMediaIndex);
 });
 
 // "ESC Back to Menu" controls — clickable back-out
